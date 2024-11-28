@@ -1,0 +1,19 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        JESUS_PASSWORD: ${JESUS_PASSWORD}
+        MARCUS_PASSWORD: ${MARCUS_PASSWORD}
+    container_name: DE_Assessment_jesus
+    hostname: yharnam
+    env_file:
+      - .env
+    volumes:
+      - ./:/usr/src/app/workspace
+    stdin_open: true
+    tty: true
+    user: "jesus"
+#    command: bash -c "sudo chown -R jesus:jesus /usr/src/app/workspace && bash"
+    entrypoint: ["bash", "-c", "sudo chown -R jesus:jesus /usr/src/app/workspace && bash"]
+
