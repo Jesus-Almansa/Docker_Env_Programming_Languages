@@ -4,8 +4,8 @@ services:
       context: .
       args:
         JESUS_PASSWORD: ${JESUS_PASSWORD}
-        MARCUS_PASSWORD: ${MARCUS_PASSWORD}
-    container_name: DE_Assessment_jesus
+        IKER_PASSWORD: ${IKER_PASSWORD}
+    container_name: DevEnv
     hostname: yharnam
     env_file:
       - .env

@@ -24,23 +24,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Crea el usuario 'JESUS' y 'MARCUS', utilizando las variables de entorno para las contraseñas
+# Crea el usuario 'JESUS' y 'IKER', utilizando las variables de entorno para las contraseñas
 ARG JESUS_PASSWORD
-ARG MARCUS_PASSWORD
+ARG IKER
 RUN useradd -ms /bin/bash jesus && \
     echo "jesus:${JESUS_PASSWORD}" | chpasswd && \
     usermod -aG sudo jesus && \
-    useradd -ms /bin/bash marcus && \
-    echo "marcus:${MARCUS_PASSWORD}" | chpasswd && \
-    usermod -aG sudo marcus
+    useradd -ms /bin/bash iker && \
+    echo "iker:${IKER_PASSWORD}" | chpasswd && \
+    usermod -aG sudo iker
 
-# Configura que JESUS y MARCUS puedan usar sudo sin contraseña
+# Configura que JESUS y iker puedan usar sudo sin contraseña
 RUN echo "jesus ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-    echo "marcus ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && visudo -c
+    echo "iker ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && visudo -c
 
-# Cambia la propiedad de todos los archivos y directorios de /usr/src/app/workspace a JESUS y MARCUS
+# Cambia la propiedad de todos los archivos y directorios de /usr/src/app/workspace a JESUS y iker
 RUN chown -R jesus:jesus /usr/src/app/workspace && \
-    chown -R marcus:marcus /usr/src/app/workspace
+    chown -R iker:iker /usr/src/app/workspace
 
 # Establece el usuario JESUS como el usuario por defecto
 USER jesus
